@@ -1,0 +1,38 @@
+﻿@model Politics.Web.ViewModels.RegionModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+</head>
+<body>
+    <div>
+        <h1>
+        @foreach (var r in Model.Parents.Reverse())
+        {
+            @Html.ActionLink(r.Name, "Index", new { id = r.RegionID })
+            @Html.Label("/");
+        }@Html.Label(Model.Name)</h1>
+
+        @if (Model.Authority != Authority.None)
+        {
+            <p>Authority - @Model.Authority</p>
+        }
+    </div>
+
+    <div>
+        <ul>
+            <li>@Ajax.ActionLink("Regions", "Regions", new { id = Model.RegionID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" })</li>
+            <li>@Ajax.ActionLink("Orders", "Orders", new { id = Model.RegionID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" })</li>
+        </ul>
+    </div>
+
+    <div id="region-content">
+        @Html.Partial("Regions", Model)
+    </div>
+</body>
+</html>

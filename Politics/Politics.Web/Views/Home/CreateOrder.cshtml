@@ -1,0 +1,14 @@
+﻿@using Politics.Model
+@model Politics.Web.ViewModels.OrderCreateModel
+
+<div>
+    @using (Ajax.BeginForm("CreateOrder", new { regionId = ViewBag.RegionID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" }))
+    {
+        @Html.ValidationSummary()
+        <p>Name @Html.TextBoxFor(o => o.Name)</p>
+        <p>Act @Html.TextBoxFor(o => o.Act)</p>
+        <p>Authority @Html.DropDownListFor(o => o.Authority, Enum.GetNames(typeof(Authority)).Where(n => n != "None")
+            .Select(n => new SelectListItem { Text = n, Value = n }).ToArray())</p>
+        <input type="submit" value="Create Order"/>
+    }
+</div>

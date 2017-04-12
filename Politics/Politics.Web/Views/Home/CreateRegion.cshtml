@@ -1,0 +1,17 @@
+﻿@model Politics.Web.ViewModels.RegionCreateModel
+
+<div>
+    @using (Ajax.BeginForm("CreateRegion", new { parentId = ViewBag.ParentID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" }))
+    {
+        @Html.ValidationSummary()
+        <p>Name @Html.TextBoxFor(r => r.Name)</p>
+            <p>
+                Authority
+                @Html.DropDownListFor(r => r.Authority, Enum.GetNames(typeof(Politics.Model.Authority)).Where(n => n != "None")
+                .Select(n => new SelectListItem { Text = n, Value = n }).ToArray())
+            </p>
+            <input type="submit" value="Create Region" />
+
+    }
+</div>
+

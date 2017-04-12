@@ -1,0 +1,18 @@
+﻿@model Politics.Web.ViewModels.RegionModel
+
+<p>Regions</p>
+
+<div>
+    <ul>
+        <li>@Ajax.ActionLink("Create Region", "CreateRegion", new { parentId = Model.RegionID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" })</li>
+    </ul>
+</div>
+
+<div>
+    <ul>
+        @foreach (var r in Model.Childs)
+        {
+            <li>@Html.ActionLink(r.Name, "Index", new { id = r.RegionID })</li>
+        }
+    </ul>
+</div>

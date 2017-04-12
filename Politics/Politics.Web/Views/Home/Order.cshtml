@@ -1,0 +1,32 @@
+﻿@model Politics.Web.ViewModels.OrderModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Order</title>
+</head>
+<body>
+    <div>
+        <h1>@Model.Name</h1>
+        <p>Region - @Html.ActionLink(Model.Region.Name, "Index", new { id = Model.Region.RegionID })</p>
+    </div>
+    <div>
+        <p>Authority - @Model.Authority</p>
+        <p>Act - @Model.Act</p>
+    </div>
+    <div>
+        <p>Active in</p>
+        <ul>
+            @foreach(var r in Model.Regions)
+            {
+                <li>@Html.ActionLink(r.Name, "Index", new { id = r.RegionID })</li>
+            }
+        </ul>
+    </div>
+</body>
+</html>

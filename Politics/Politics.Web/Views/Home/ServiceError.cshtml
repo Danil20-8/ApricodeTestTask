@@ -1,0 +1,21 @@
+﻿@model string
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ServiceError</title>
+</head>
+<body>
+    <div>
+        <h1>Ooops!</h1>
+        <p>@Model</p>
+        @Html.ActionLink("Go Home", "Index", new { id = 1 })
+    </div>
+</body>
+</html>

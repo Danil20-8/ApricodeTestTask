@@ -1,0 +1,40 @@
+﻿@model Politics.Web.ViewModels.RegionWithOrdersModel
+
+<p>Orders</p>
+
+<div>
+    <ul>
+        <li>@Ajax.ActionLink("Create Order", "CreateOrder", new { regionId = Model.RegionID }, new AjaxOptions { InsertionMode = InsertionMode.Replace, UpdateTargetId = "region-content" })</li>
+    </ul>
+</div>
+
+<div>
+    <p>Owner</p>
+    <ul>
+        @if (Model.OrdersOf.Any())
+        {
+            foreach (var r in Model.OrdersOf)
+            {
+                <li>@Html.ActionLink(r.Name, "Order", new { id = r.OrderID })</li>
+            }
+        }
+        else
+        {
+            <li>Region has no own orders</li>
+        }
+    </ul>
+    <p>Active</p>
+    <ul>
+        @if (Model.OrdersIn.Any())
+        {
+            foreach (var r in Model.OrdersIn)
+            {
+            <li>@Html.ActionLink(r.Name, "Order", new { id = r.OrderID })</li>
+            }
+        }
+        else
+        {
+            <li>Region has no active orders</li>
+        }
+    </ul>
+</div>
